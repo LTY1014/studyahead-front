@@ -1,23 +1,16 @@
 <template>
   <div v-for="(item, i) in images" :key="i">
     <van-image :src="item" />
-    <van-button type="primary" block>活动中心</van-button>
-    <van-circle v-model:current-rate="currentRate" :rate="30" :speed="100" :text="text" />
+    <van-divider>文化活动</van-divider>
   </div>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-
-let images = ['http://47.98.184.192:8085/LightPicture/2023/05/cc30b6de64e1cf48.png']
-
-const currentRate = ref(0)
-const text = computed(() => currentRate.value.toFixed(0) + '%')
+let images = [
+  'http://47.98.184.192:8085/LightPicture/2023/05/cc30b6de64e1cf48.png',
+  'http://47.98.184.192:8085/LightPicture/2023/05/18ce68d1a58acf3c.png',
+  'http://47.98.184.192:8085/LightPicture/2023/05/1184aaa13e7a7c41.png',
+]
 </script>
 
-<style scoped>
-.custom-title {
-  margin-right: 4px;
-  vertical-align: middle;
-}
-</style>
+<style scoped></style>

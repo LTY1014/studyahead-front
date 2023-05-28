@@ -1,17 +1,13 @@
 <template>
-  <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '5px' }">
-    {{ orderInfo.place }}-{{ orderInfo.orderDate }}--{{ orderInfo.orderTime }}
-  </van-divider>
+  <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '5px' }"> {{ orderInfo.place }}--{{ orderInfo.orderDate }} </van-divider>
 
   <van-field v-model="orderInfo.place" is-link readonly label="预约教室" placeholder="选择位置" @click="showPlacePicker = true" />
   <van-popup v-model:show="showPlacePicker" round position="bottom">
     <van-picker :columns="placeColumns" @cancel="showPlacePicker = false" @confirm="onPlaceConfirm" />
   </van-popup>
 
-  <van-field v-model="orderInfo.orderDate" is-link readonly label="日期" placeholder="选择日期" @click="showDatePicker = true" />
-  <van-popup v-model:show="showDatePicker" round position="bottom">
-    <van-picker :columns="dateColumns" @cancel="showTimePicker = false" @confirm="onDateConfirm" />
-  </van-popup>
+  <van-cell title="选择日期" :value="orderInfo.orderDate" @click="showDate = true" />
+  <van-calendar v-model:show="showDate" @confirm="onConfirm" />
 
   <van-field v-model="orderInfo.startTime" is-link readonly label="开始时间" placeholder="选择时间" @click="showTimePicker = true" />
   <van-popup v-model:show="showTimePicker" round position="bottom">
@@ -34,9 +30,8 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { showFailToast, showSuccessToast } from 'vant'
-import { getDay, getMonth } from '@/plugins/util'
 import { useOrderInfoStore } from '@/store/orderInfoStore'
-import { dateColumns, placeColumns, timeColumns } from '@/plugins/columns'
+import { placeColumns, timeColumns } from '@/plugins/columns'
 import { storeToRefs } from 'pinia'
 
 let orderInfoStore = useOrderInfoStore()
@@ -45,14 +40,18 @@ let { orderInfo } = storeToRefs(orderInfoStore)
 
 onMounted(() => {})
 
-const showDatePicker = ref(false)
 const showTimePicker = ref(false)
 const showEndTimePicker = ref(false)
 const showPlacePicker = ref(false)
+const showDate = ref(false)
 
-const onDateConfirm = ({ selectedOptions }) => {
-  showDatePicker.value = false
-  orderInfoStore.orderInfo.orderDate = getMonth() + '月' + selectedOptions[0].value
+const onConfirm = (value) => {
+  showDate.value = false
+  let month = value.getMonth() + 1
+  month = month < 10 ? '0' + month : month
+  let day = value.getDate()
+  day = day < 10 ? '0' + day : day
+  orderInfoStore.orderInfo.orderDate = month + '月' + day + '日'
 }
 
 const onTimeConfirm = ({ selectedOptions }) => {

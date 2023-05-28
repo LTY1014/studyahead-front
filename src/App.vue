@@ -1,9 +1,5 @@
 <template>
-  <van-nav-bar :title="title" left-text="返回" left-arrow @click-left="router.back()" @click-right="onClickRight">
-    <template #right>
-      <van-icon name="search" size="18" />
-    </template>
-  </van-nav-bar>
+  <van-nav-bar :title="title" left-text="返回" left-arrow @click-left="router.back()"> </van-nav-bar>
   <van-pull-refresh v-model="loading" @refresh="onRefresh">
     <div>
       <router-view />
@@ -26,10 +22,6 @@ const router = useRouter()
 
 const DEFAULT_TITLE = '主页'
 let title = ref(DEFAULT_TITLE)
-
-const onClickRight = () => {
-  router.push('/search')
-}
 
 router.beforeEach((to) => {
   const toPath = to.path
