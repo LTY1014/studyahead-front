@@ -10,6 +10,7 @@ const routes = [
   { path: '/user', title: '个人', component: UserPage },
   { path: '/search', title: '搜索', component: SearchPage },
   { path: '/userdata', title: '用户资料', component: UserData },
+  { path: '/activity', title: '活动', component: () => import('@/components/Activity.vue') },
 ]
 
 export default routes

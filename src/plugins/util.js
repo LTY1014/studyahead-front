@@ -8,6 +8,13 @@ export const getMonth = () => {
   return month
 }
 
+export const getDay = () => {
+  const time = new Date()
+  let date = time.getDate()
+  date = date < 10 ? '0' + date : date
+  return date
+}
+
 /**
  * 获取当前时间(格式为16:01:05)
  * @returns {string}
@@ -24,14 +31,26 @@ export const getTime = () => {
 }
 
 /**
- * 获取当前日期(格式为05月27日)
+ * 获取当前日期(格式为2023年05月27号 )
  * @returns {string}
  */
 export const getDate = () => {
   let time = new Date()
-  let m = time.getMonth() + 1
-  m = m < 10 ? '0' + m : m //当小时数小于10时，在前面补0，下面同理
-  let day = time.getDate()
-  day = day < 10 ? '0' + day : day
-  return m + '月' + day + '日'
+  let year = time.getFullYear()
+  let month = time.getMonth() + 1 //获得月份的少1
+  month = month < 10 ? '0' + month : month
+  let date = time.getDate()
+  date = date < 10 ? '0' + date : date
+  return year + '年' + month + '月' + date + '号 '
+}
+
+/**
+ * 返回当前星期
+ * @returns {string}
+ */
+export const getWeek = () => {
+  const time = new Date()
+  const day = time.getDay()
+  const arr = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+  return arr[day]
 }
