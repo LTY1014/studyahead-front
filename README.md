@@ -22,22 +22,43 @@
 
 ## 项目文档
 
-### 目录结构
-
-
-
-
-
 ### 技术栈
 
-|                             技术                             |     说明     | 版本 |
-| :----------------------------------------------------------: | :----------: | :--: |
-|                  [Vue](https://vuejs.org/)                   |   前端框架   | 3.2  |
-|           [Vue-router](https://router.vuejs.org/)            |   路由框架   | 4.0  |
-| [vant]([Vant 4 - A lightweight, customizable Vue UI library for mobile web apps. (gitee.io)](http://vant-contrib.gitee.io/vant/#/zh-CN)) |  移动组件库  | 4.1  |
-|               [Vuex](https://vuex.vuejs.org/)                | 状态管理框架 | 4.1  |
-|             [pinia](https://pinia.vuejs.org/zh/)             |  状态管理库  | 2.0  |
-|           [Axios](https://github.com/axios/axios)            | 前端HTTP框架 | 1.3  |
+|                    技术                    |     说明     | 版本 |
+| :----------------------------------------: | :----------: | :--: |
+|         [Vue](https://vuejs.org/)          |   前端框架   | 3.2  |
+|  [Vue-router](https://router.vuejs.org/)   |   路由框架   | 4.0  |
+| [vant](http://vant-contrib.gitee.io/vant/) |  移动组件库  | 4.1  |
+|      [Vuex](https://vuex.vuejs.org/)       | 状态管理框架 | 4.1  |
+|    [pinia](https://pinia.vuejs.org/zh/)    |  状态管理库  | 2.0  |
+|  [Axios](https://github.com/axios/axios)   | 前端HTTP框架 | 1.3  |
+
+
+
+### 目录结构
+
+```
+src
+├── api
+│   └── index.js		//接口
+├── assets
+│   └── logo.png
+├── components
+│   └── UserData.vue			//编辑用户
+├── pages
+│   ├── DiscoveryPage.vue			//预约页
+│   ├── HomePage.vue				//主页
+│   └── UserPage.vue				//用户页
+├── plugins
+│   ├── requestConfig.js		//请求封装
+│   └── util.js
+├── router
+│   └── route.js			//路由配置
+├── store						//全局状态管理
+│   └── orderInfoStore.js
+├── App.vue
+└── main.js
+```
 
 
 
@@ -48,6 +69,8 @@
 - [x] 支持全局页面刷新
 
 - [x] 模块化全局状态管理
+
+- [x] 集成表单构建页面
 
 - [x] 封装axios请求
 
